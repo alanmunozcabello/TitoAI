@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tito AI - Asistente Personal</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Marked.js for Markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css?v=3">
+</head>
+
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo-container">
+        <div class="logo-icon">T</div>
+        <div class="logo-text">
+          <h1>Tito AI</h1>
+          <span class="status">● Online</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="chat-container">
+      <div id="respuesta" class="respuesta-area">
+        <div class="message ai greeting">
+          <div class="avatar ai-avatar">T</div>
+          <div class="bubble">
+            <div class="content">
+              <p>¡Hola! Soy Tito, tu asistente personal. ¿En qué te puedo ayudar hoy?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="input-container">
+      <div class="input-wrapper">
+        <input id="mensaje" type="text" placeholder="Escribe un mensaje..." autocomplete="off">
+        <button id="enviar" class="btn-enviar" title="Enviar mensaje">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon-send">
+            <path
+              d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
+          </svg>
+        </button>
+      </div>
+      <div class="footer-note">Tito puede cometer errores. Considera verificar la información importante.</div>
+    </footer>
+  </div>
+
+  <script src="script.js?v=2"></script>
+</body>
+
+</html>
