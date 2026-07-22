@@ -6,21 +6,21 @@ import os
 # Load .env
 load_dotenv()
 URL_API = os.getenv("URL_API")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
 
 def ask_tito_stream(pregunta: str):
     """
     Envía una pregunta a la IA y retorna la respuesta en streaming
     """
-    url = URL_API
-    headers = {"Content-Type": "application/json"}
+    url = "https://api.groq.com/openai/v1/chat/completions"
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {GROQ_API_KEY}",
+    }
     payload = {
-        "model": "lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf",
+        "model": GROQ_MODEL,
         "messages": [
-            {"role": "system", "content": (
-                "Eres un asistente personal. "
-                "Tu nombre es Tito. "
-                "Manten un tono profesional, servicial y conciso."
-            )},
             {"role": "user", "content": pregunta}
         ],
         "stream": True,
@@ -30,7 +30,11 @@ def ask_tito_stream(pregunta: str):
     try:
         with requests.post(url, headers=headers, json=payload, stream=True) as response:
             if response.status_code != 200:
-                yield f"Error API: {response.status_code}"
+                detalle_error = response.text.strip()
+                if detalle_error:
+                    yield f"Error API: {response.status_code} - {detalle_error}"
+                else:
+                    yield f"Error API: {response.status_code}"
                 return
             
             for line in response.iter_lines():
